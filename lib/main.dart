@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static final showGrid = true;
+  static final showCard = true;
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +18,44 @@ class MyApp extends StatelessWidget {
           title: Text('Flutter layout demo'),
         ),
         body: Center(
-          child: showGrid ? _buildGrid() : _buildList(),
+          child: MyWidget(),
         ),
       ),
     );
   }
+}
 
-  Widget _buildGrid() {
-    return GridView.extent(
-      maxCrossAxisExtent: 150,
-      padding: const EdgeInsets.all(4),
-      mainAxisSpacing: 4,
-      crossAxisSpacing: 4,
-      children: _buildGridTileList(30),
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        BlueBox(),
+        Flexible(
+          fit: FlexFit.tight,
+          flex: 2,
+          child: BlueBox(),
+        ),
+        Flexible(
+          fit: FlexFit.tight,
+          flex: 1,
+          child: BlueBox(),
+        ),
+      ],
     );
   }
+}
 
-  List<Container> _buildGridTileList(int count) {
-    return List.generate(count, (index) => Container(
-      child: Image.asset('images/pic$index.jpg'),
-    ));
-  }
-
-  Widget _buildList() {
-    return null;
+class BlueBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        border: Border.all(),
+      ),
+    );
   }
 }
