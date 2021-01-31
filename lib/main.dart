@@ -28,33 +28,57 @@ class MyApp extends StatelessWidget {
 class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          'Hey!',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Futura',
-            color: Colors.blue,
+        Row(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.account_circle,
+              size: 50,
+            ),
           ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Flutter McFlutter',
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              Text(
+                'Experienced Developer',
+              ),
+            ],
+          )
+        ]),
+        SizedBox(
+          height: 8,
         ),
-        Text(
-          'Hey!',
-          style: TextStyle(
-            fontSize: 50,
-            fontFamily: 'Futura',
-            color: Colors.green,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '123 Main Street',
+            ),
+            Text(
+              '(415) 555-0198',
+            ),
+          ],
         ),
-        Text(
-          'Hey!',
-          style: TextStyle(
-            fontSize: 40,
-            fontFamily: 'Futura',
-            color: Colors.red,
-          ),
+        SizedBox(
+          height: 16,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Icon(Icons.accessibility),
+            Icon(Icons.timer),
+            Icon(Icons.phone_android),
+            Icon(Icons.phone_iphone),
+          ],
         ),
       ],
     );
