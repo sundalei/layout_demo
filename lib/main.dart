@@ -29,17 +29,32 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
-        BlueBox(),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 2,
-          child: BlueBox(),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Futura',
+            color: Colors.blue,
+          ),
         ),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 1,
-          child: BlueBox(),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 50,
+            fontFamily: 'Futura',
+            color: Colors.green,
+          ),
+        ),
+        Text(
+          'Hey!',
+          style: TextStyle(
+            fontSize: 40,
+            fontFamily: 'Futura',
+            color: Colors.red,
+          ),
         ),
       ],
     );
