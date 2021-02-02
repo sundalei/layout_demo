@@ -1,100 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-void main() {
-  debugPaintSizeEnabled = false;
-  runApp(MyApp());
-}
+class MyAppBar extends StatelessWidget {
+  MyAppBar({this.title});
 
-class MyApp extends StatelessWidget {
-  static final showCard = true;
+  final Widget title;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter layout demo'),
-        ),
-        body: Center(
-          child: MyWidget(),
-        ),
-      ),
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.account_circle,
-              size: 50,
-            ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Flutter McFlutter',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              Text(
-                'Experienced Developer',
-              ),
-            ],
-          )
-        ]),
-        SizedBox(
-          height: 8,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '123 Main Street',
-            ),
-            Text(
-              '(415) 555-0198',
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(Icons.accessibility),
-            Icon(Icons.timer),
-            Icon(Icons.phone_android),
-            Icon(Icons.phone_iphone),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class BlueBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
+      height: 56.0,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
-        color: Colors.blue,
-        border: Border.all(),
+        color: Colors.blue[500],
+      ),
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            icon: Icon(Icons.menu),
+            tooltip: 'Navigation menu',
+            onPressed: null,
+          ),
+          Expanded(
+            child: title,
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Search',
+            onPressed: null,
+          ),
+        ],
       ),
     );
   }
+}
+
+
+class MyScaffold extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Column(
+        children: <Widget>[
+          MyAppBar(
+            title: Text(
+              'Example title',
+              style: Theme.of(context).primaryTextTheme.headline6,
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: Text('Hello, world!'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+void main() {
+  debugPaintSizeEnabled = false;
+  runApp(
+    MaterialApp(
+      title: 'My app',
+      home: SafeArea(
+        child: MyScaffold(),
+      ),
+    )
+  );
 }
